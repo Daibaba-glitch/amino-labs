@@ -27,3 +27,30 @@
     min-height: 100vh;
   }
 }
+/* ===== ADD THIS TO THE BOTTOM OF YOUR EXISTING app/globals.css ===== */
+
+.article-body p {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: hsl(210 15% 70%);
+  margin-bottom: 1.25rem;
+}
+
+.article-body h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: hsl(210 20% 92%);
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.article-body em {
+  color: hsl(270 60% 70%);
+  font-style: italic;
+}
+
+.article-body strong {
+  color: hsl(210 20% 92%);
+  font-weight: 600;
+}
