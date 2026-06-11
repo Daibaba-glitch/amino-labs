@@ -1,3 +1,15 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact & Wholesale Orders | Amino Labs",
+  description: "Contact Amino Labs for wholesale pricing and bulk orders. Email: aminoresearchlab@gmail.com. We respond within 24 hours.",
+}
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Contact & Wholesale Orders | Amino Labs",
+  description: "Contact Amino Labs for wholesale pricing and bulk orders. Email: aminoresearchlab@gmail.com. We respond within 24 hours.",
+}
 "use client"
 
 import { useState } from "react"

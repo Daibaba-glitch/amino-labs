@@ -1,3 +1,9 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "About Amino Labs",
+  description: "Every batch tested by Janoshik Analytical. 99.2% average HPLC purity. 100% of batches COA-tested. Zero hidden results.",
+}
 import { ShieldCheck, FlaskConical, Microscope, Award, Users, Target, FileText, Check } from "lucide-react"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"

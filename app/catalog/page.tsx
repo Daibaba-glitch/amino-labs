@@ -1,3 +1,9 @@
+import type { Metadata } from "next"
+
+export const metadata: Metadata = {
+  title: "Research Compound Catalog | Amino Labs",
+  description: "Browse 30+ verified peptide and amino acid research compounds. Semaglutide, BPC-157, Tirzepatide and more. HPLC verified with public COA.",
+}
 "use client"
 
 import { useState } from "react"
