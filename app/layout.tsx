@@ -1,4 +1,5 @@
 import type { Metadata } from "next"
+import { OrganizationSchema, WebsiteSchema, FAQSchema } from "@/components/structured-data"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import "./globals.css"
@@ -75,6 +76,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="font-sans antialiased">
         {children}
+        <OrganizationSchema />
+        <WebsiteSchema />
+        <FAQSchema />
+        {process.env.NODE_ENV === "production" && <Analytics />}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>
