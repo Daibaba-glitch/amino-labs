@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, useCallback } from "react"
 import { ArrowUpRight, RefreshCw, FlaskConical, BookOpen, Microscope } from "lucide-react"
 
 const CATEGORIES = ["All", "Peptides", "Amino Acids", "Research", "Analytics"]
@@ -11,7 +11,6 @@ const SOURCES = [
   { name: "ScienceDaily", url: "https://www.sciencedaily.com" },
 ]
 
-// Fallback articles shown before API is connected
 const FALLBACK_POSTS = [
   {
     id: 1,
@@ -47,63 +46,6 @@ const FALLBACK_POSTS = [
 
 type Post = typeof FALLBACK_POSTS[0]
 
-async function fetchAndSummarize(): Promise<Post[]> {
-  const apiKey = process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY
-
-  // If no API key yet, return fallback posts
-  if (!apiKey || apiKey === "YOUR_API_KEY_HERE") {
-    return FALLBACK_POSTS
-  }
-
-  try {
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": apiKey,
-        "anthropic-version": "2023-06-01",
-      },
-      body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
-        max_tokens: 1000,
-        messages: [
-          {
-            role: "user",
-            content: `You are a research content writer for Amino Labs, a short-chain amino acid research compound supplier. 
-
-Generate 3 recent research article summaries about peptides, amino acids, or related research compounds. Each should feel like a real recent study.
-
-Respond ONLY with valid JSON, no markdown, no backticks, exactly this format:
-[
-  {
-    "id": 1,
-    "category": "Peptides",
-    "title": "Article title here",
-    "summary": "2-3 sentence summary written for researchers. Mention specific findings.",
-    "source": "Journal or publication name",
-    "sourceUrl": "https://pubmed.ncbi.nlm.nih.gov",
-    "date": "Jun 2026",
-    "read": "4 min read"
-  }
-]
-
-Categories must be one of: Peptides, Amino Acids, Research, Analytics
-Make titles specific and scientific. Summaries should mention real mechanisms or findings.`,
-          },
-        ],
-      }),
-    })
-
-    const data = await response.json()
-    const text = data.content?.[0]?.text ?? ""
-    const clean = text.replace(/```json|```/g, "").trim()
-    const parsed = JSON.parse(clean)
-    return Array.isArray(parsed) ? parsed : FALLBACK_POSTS
-  } catch {
-    return FALLBACK_POSTS
-  }
-}
-
 function CategoryIcon({ cat }: { cat: string }) {
   if (cat === "Peptides") return <FlaskConical className="size-3.5" />
   if (cat === "Amino Acids") return <Microscope className="size-3.5" />
@@ -116,19 +58,27 @@ export function BlogSection() {
   const [loading, setLoading] = useState(false)
   const [apiConnected, setApiConnected] = useState(false)
 
-  async function loadPosts() {
+  const loadPosts = useCallback(async () => {
     setLoading(true)
-    const fetched = await fetchAndSummarize()
-    setPosts(fetched)
-    const hasKey = !!process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY &&
-      process.env.NEXT_PUBLIC_ANTHROPIC_API_KEY !== "YOUR_API_KEY_HERE"
-    setApiConnected(hasKey)
+    try {
+      const res = await fetch("/api/blog")
+      if (res.ok) {
+        const data = await res.json()
+        if (data.posts && Array.isArray(data.posts)) {
+          setPosts(data.posts)
+          setApiConnected(data.live === true)
+        }
+      }
+    } catch {
+      setPosts(FALLBACK_POSTS)
+      setApiConnected(false)
+    }
     setLoading(false)
-  }
+  }, [])
 
   useEffect(() => {
     loadPosts()
-  }, [])
+  }, [loadPosts])
 
   const filtered = activeCategory === "All"
     ? posts
@@ -137,8 +87,6 @@ export function BlogSection() {
   return (
     <section id="research" className="border-b border-border">
       <div className="mx-auto max-w-7xl px-6 py-16 md:py-24">
-
-        {/* Header */}
         <div className="flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-end">
           <div>
             <span className="font-mono text-xs uppercase tracking-widest text-primary">
@@ -154,11 +102,10 @@ export function BlogSection() {
             </p>
           </div>
           <div className="flex items-center gap-3">
-            {/* API status badge */}
-            <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs ${
+            <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-mono text-xs border ${
               apiConnected
-                ? "bg-primary/10 text-primary border border-primary/20"
-                : "bg-secondary text-muted-foreground border border-border"
+                ? "bg-primary/10 text-primary border-primary/20"
+                : "bg-secondary text-muted-foreground border-border"
             }`}>
               <span className={`size-1.5 rounded-full ${apiConnected ? "bg-primary" : "bg-muted-foreground"}`} />
               {apiConnected ? "Live AI updates" : "API not connected"}
@@ -174,7 +121,6 @@ export function BlogSection() {
           </div>
         </div>
 
-        {/* Category filter */}
         <div className="mt-8 flex flex-wrap gap-2">
           {CATEGORIES.map((cat) => (
             <button
@@ -191,37 +137,24 @@ export function BlogSection() {
           ))}
         </div>
 
-        {/* Posts grid */}
         <div className="mt-8 grid gap-6 md:grid-cols-3">
           {loading
             ? Array.from({ length: 3 }).map((_, i) => (
                 <div key={i} className="flex flex-col gap-3 rounded-xl border border-border bg-secondary/20 p-5 animate-pulse">
                   <div className="h-3 w-20 rounded bg-border" />
                   <div className="h-5 w-full rounded bg-border" />
-                  <div className="h-5 w-3/4 rounded bg-border" />
                   <div className="h-16 w-full rounded bg-border" />
                   <div className="h-3 w-24 rounded bg-border" />
                 </div>
               ))
             : filtered.map((post) => (
                 <article key={post.id} className="group flex flex-col gap-3 rounded-xl border border-border bg-secondary/20 p-5 transition-colors hover:border-primary/30">
-                  {/* Category */}
                   <span className="inline-flex items-center gap-1.5 font-mono text-xs text-primary">
                     <CategoryIcon cat={post.category} />
                     {post.category}
                   </span>
-
-                  {/* Title */}
-                  <h3 className="text-pretty text-base font-medium leading-snug">
-                    {post.title}
-                  </h3>
-
-                  {/* Summary */}
-                  <p className="text-sm leading-relaxed text-muted-foreground flex-1">
-                    {post.summary}
-                  </p>
-
-                  {/* Footer */}
+                  <h3 className="text-pretty text-base font-medium leading-snug">{post.title}</h3>
+                  <p className="text-sm leading-relaxed text-muted-foreground flex-1">{post.summary}</p>
                   <div className="flex items-center justify-between border-t border-border pt-3 mt-1">
                     <div className="flex flex-col gap-0.5">
                       <span className="font-mono text-xs text-muted-foreground">{post.source}</span>
@@ -242,36 +175,11 @@ export function BlogSection() {
           }
         </div>
 
-        {/* API connection instructions */}
-        {!apiConnected && (
-          <div className="mt-8 rounded-xl border border-border bg-secondary/20 p-6">
-            <p className="font-mono text-xs uppercase tracking-widest text-primary mb-3">
-              Enable live AI research updates
-            </p>
-            <p className="text-sm text-muted-foreground mb-4">
-              To enable auto-updating research summaries, add your Anthropic API key to your project:
-            </p>
-            <ol className="space-y-2 text-sm text-muted-foreground list-decimal list-inside">
-              <li>Sign up at <a href="https://console.anthropic.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">console.anthropic.com</a></li>
-              <li>Create an API key under "API Keys"</li>
-              <li>Create a file called <code className="bg-border px-1.5 py-0.5 rounded text-xs">.env.local</code> in your <code className="bg-border px-1.5 py-0.5 rounded text-xs">my-site</code> folder</li>
-              <li>Add this line: <code className="bg-border px-1.5 py-0.5 rounded text-xs">NEXT_PUBLIC_ANTHROPIC_API_KEY=your_key_here</code></li>
-              <li>Restart your dev server — live updates activate automatically</li>
-            </ol>
-          </div>
-        )}
-
-        {/* Sources */}
         <div className="mt-8 flex items-center gap-4 flex-wrap">
           <span className="font-mono text-xs text-muted-foreground">Sources:</span>
           {SOURCES.map((s) => (
-            <a
-              key={s.name}
-              href={s.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors"
-            >
+            <a key={s.name} href={s.url} target="_blank" rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-primary transition-colors">
               {s.name}
               <ArrowUpRight className="size-3" />
             </a>
