@@ -1,11 +1,5 @@
 "use client"
 
-import type { Metadata } from "next"
-
-export const metadata: Metadata = {
-  title: "Contact & Wholesale Orders | Amino Labs",
-  description: "Contact Amino Labs for wholesale pricing and bulk orders. Email: aminoresearchlab@gmail.com. We respond within 24 hours.",
-}
 
 import { useState } from "react"
 import { Mail, MessageSquare, Clock, ShieldCheck, Package, TrendingUp, Truck, BadgeCheck } from "lucide-react"
