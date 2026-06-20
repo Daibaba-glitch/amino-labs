@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://aminolabs.com/sitemap.xml",
+    sitemap: "https://aminoresearchlab.ca/sitemap.xml",
   }
 }

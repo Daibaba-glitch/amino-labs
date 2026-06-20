@@ -1,14 +1,14 @@
 import type { Metadata } from "next"
-import { OrganizationSchema, WebsiteSchema, FAQSchema } from "@/components/structured-data"
 import { Geist, Geist_Mono } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
+import { OrganizationSchema, WebsiteSchema, FAQSchema } from "@/components/structured-data"
 import "./globals.css"
 
 const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://amino-labs-omega.vercel.app"),
+  metadataBase: new URL("https://aminoresearchlab.ca"),
   title: {
     default: "Amino Labs | Verified Peptide & Amino Acid Research Compounds",
     template: "%s | Amino Labs",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     "HPLC verified peptides",
     "short chain amino acids",
   ],
-  authors: [{ name: "Amino Labs", url: "https://amino-labs-omega.vercel.app" }],
+  authors: [{ name: "Amino Labs", url: "https://aminoresearchlab.ca" }],
   creator: "Amino Labs",
   publisher: "Amino Labs",
   robots: {
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://amino-labs-omega.vercel.app",
+    url: "https://aminoresearchlab.ca",
     siteName: "Amino Labs",
     title: "Amino Labs | Verified Peptide & Amino Acid Research Compounds",
     description:
@@ -79,7 +79,6 @@ export default function RootLayout({
         <OrganizationSchema />
         <WebsiteSchema />
         <FAQSchema />
-        {process.env.NODE_ENV === "production" && <Analytics />}
         {process.env.NODE_ENV === "production" && <Analytics />}
       </body>
     </html>

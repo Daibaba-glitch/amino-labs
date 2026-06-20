@@ -5,8 +5,8 @@ export function OrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Amino Labs",
-    url: "https://amino-labs-omega.vercel.app",
-    logo: "https://amino-labs-omega.vercel.app/amino-labs-logo-combined.png",
+    url: "https://aminoresearchlab.ca",
+    logo: "https://aminoresearchlab.ca/amino-labs-logo-combined.png",
     description:
       "Amino Labs supplies independently tested short-chain amino acid and peptide research compounds. Every batch verified by Janoshik Analytical with a public Certificate of Analysis.",
     email: "aminoresearchlab@gmail.com",
@@ -33,12 +33,12 @@ export function WebsiteSchema() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Amino Labs",
-    url: "https://amino-labs-omega.vercel.app",
+    url: "https://aminoresearchlab.ca",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://amino-labs-omega.vercel.app/catalog?search={search_term_string}",
+        urlTemplate: "https://aminoresearchlab.ca/catalog?search={search_term_string}",
       },
       "query-input": "required name=search_term_string",
     },
@@ -46,45 +46,6 @@ export function WebsiteSchema() {
   return (
     <Script
       id="website-schema"
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-    />
-  )
-}
-
-export function ProductListSchema() {
-  const products = [
-    { name: "Semaglutide", spec: "5mg", price: 65 },
-    { name: "Tirzepatide", spec: "10mg", price: 90 },
-    { name: "BPC-157", spec: "10mg", price: 100 },
-    { name: "Retatrutide", spec: "10mg", price: 160 },
-    { name: "Ipamorelin", spec: "10mg", price: 65 },
-    { name: "NAD+", spec: "500mg", price: 110 },
-  ]
-  const schema = {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Research Compound Catalog",
-    description: "Verified peptide and amino acid research compounds",
-    itemListElement: products.map((p, i) => ({
-      "@type": "ListItem",
-      position: i + 1,
-      item: {
-        "@type": "Product",
-        name: `${p.name} ${p.spec}`,
-        category: "Research Compound",
-        offers: {
-          "@type": "Offer",
-          price: p.price,
-          priceCurrency: "USD",
-          availability: "https://schema.org/InStock",
-        },
-      },
-    })),
-  }
-  return (
-    <Script
-      id="product-list-schema"
       type="application/ld+json"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />

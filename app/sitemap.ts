@@ -8,7 +8,7 @@ const ARTICLE_SLUGS = [
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://amino-labs-omega.vercel.app"
+  const baseUrl = "https://aminoresearchlab.ca"
   const lastModified = new Date()
 
   const staticPages: MetadataRoute.Sitemap = [
