@@ -15,7 +15,7 @@ const FALLBACK_POSTS = [
     id: 2,
     category: "Research",
     title: "TransCODE Consortium completes first identification of human microproteins",
-    summary: "A landmark 2026 study published in Nature identifies thousands of previously unknown microproteins and peptideins, potentially doubling the known human proteome and opening new research frontiers for short-chain amino acid compounds.",
+    summary: "A landmark 2026 study published in Nature identifies thousands of previously unknown microproteins, potentially doubling the known human proteome and opening new research frontiers for short-chain amino acid compounds.",
     source: "Nature",
     sourceUrl: "https://www.nature.com",
     date: "May 6, 2026",
@@ -49,15 +49,13 @@ export async function GET() {
         "anthropic-version": "2023-06-01",
       },
       body: JSON.stringify({
-        model: "claude-haiku-4-5-20251001",
+        model: "claude-haiku-4-5",
         max_tokens: 1000,
         messages: [
           {
             role: "user",
             content: `You are a research content writer for Amino Labs, a short-chain amino acid research compound supplier.
-
 Generate 3 recent research article summaries about peptides, amino acids, or related research compounds.
-
 Respond ONLY with valid JSON, no markdown, no backticks, exactly this format:
 [
   {
@@ -71,7 +69,6 @@ Respond ONLY with valid JSON, no markdown, no backticks, exactly this format:
     "read": "4 min read"
   }
 ]
-
 Categories must be one of: Peptides, Amino Acids, Research, Analytics`,
           },
         ],
