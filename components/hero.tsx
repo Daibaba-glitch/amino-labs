@@ -15,13 +15,13 @@ export function Hero() {
             Reference standards you can verify, batch by batch.
           </h1>
           <p className="max-w-md text-pretty text-base leading-relaxed text-muted-foreground md:text-lg">
-            Amino Lab supplies short-chain amino acid research compounds backed
-            by independent, ISO-accredited third-party testing. Every batch
-            ships with a public Certificate of Analysis — no exceptions.
+            Amino Labs supplies short-chain amino acid and peptide research
+            compounds backed by independent, ISO-accredited third-party testing.
+            Every batch ships with a public Certificate of Analysis — no exceptions.
           </p>
           <div className="flex flex-col gap-3 sm:flex-row">
             <Button size="lg" asChild>
-              <a href="#catalog">
+              <a href="/catalog">
                 Browse catalog
                 <ArrowRight className="size-4" />
               </a>

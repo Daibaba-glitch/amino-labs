@@ -3,15 +3,30 @@ import Image from "next/image"
 const COLUMNS = [
   {
     title: "Catalog",
-    links: ["Peptides", "Reference standards", "Solvents", "Lab supplies"],
+    links: [
+      { label: "All compounds", href: "/catalog" },
+      { label: "Weight management", href: "/catalog" },
+      { label: "Recovery", href: "/catalog" },
+      { label: "Growth hormone", href: "/catalog" },
+    ],
   },
   {
     title: "Verification",
-    links: ["Lookup COA", "Testing partners", "Purity reports", "Methodology"],
+    links: [
+      { label: "Lookup COA", href: "/#coa" },
+      { label: "Calculator", href: "/#calculator" },
+      { label: "Research notes", href: "/research" },
+      { label: "Janoshik portal", href: "https://public.janoshik.com" },
+    ],
   },
   {
     title: "Company",
-    links: ["About", "Research notes", "Contact", "Wholesale"],
+    links: [
+      { label: "About", href: "/about" },
+      { label: "Contact", href: "/contact" },
+      { label: "Wholesale", href: "/contact" },
+      { label: "Research hub", href: "/research" },
+    ],
   },
 ]
 
@@ -29,8 +44,8 @@ export function SiteFooter() {
               className="object-contain"
             />
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-muted-foreground">
-              Independently tested short-chain amino acid research compounds
-              for the laboratory. Verified purity, transparent results.
+              Independently tested short-chain amino acid and peptide research
+              compounds for the laboratory. Verified purity, transparent results.
             </p>
           </div>
           {COLUMNS.map((col) => (
@@ -40,12 +55,12 @@ export function SiteFooter() {
               </h3>
               <ul className="mt-4 space-y-3">
                 {col.links.map((link) => (
-                  <li key={link}>
+                  <li key={link.label}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-sm text-muted-foreground transition-colors hover:text-white"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   </li>
                 ))}
@@ -62,9 +77,9 @@ export function SiteFooter() {
           <div className="mt-4 flex flex-col items-start justify-between gap-2 text-xs text-muted-foreground sm:flex-row sm:items-center">
             <span>© 2026 Amino Labs. All rights reserved.</span>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-white">Terms</a>
-              <a href="#" className="hover:text-white">Privacy</a>
-              <a href="#" className="hover:text-white">Disclaimer</a>
+              <a href="/terms" className="hover:text-white">Terms</a>
+              <a href="/privacy" className="hover:text-white">Privacy</a>
+              <a href="/disclaimer" className="hover:text-white">Disclaimer</a>
             </div>
           </div>
         </div>
