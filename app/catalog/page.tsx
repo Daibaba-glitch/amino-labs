@@ -8,30 +8,29 @@ import { SiteFooter } from "@/components/site-footer"
 
 const CATEGORIES = ["All", "Weight Management", "Recovery", "Growth Hormone", "Cognitive", "Longevity"]
 
-// ============================================================
-//  INVENTORY: edit the "stock" number for each product.
-//  stock = 0      -> shows "Out of Stock", cannot be added
-//  stock 1-5      -> shows "Low Stock (N left)"
-//  stock > 5      -> shows "In Stock"
-// ============================================================
+// Prices in CAD. Edit stock to manage inventory (0 = out of stock).
 const PRODUCTS = [
-  { id: 5, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 160, purity: "99.2%", badge: "New", stock: 7 },
-  { id: 6, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 260, purity: "99.1%", badge: null, stock: 5 },
-  { id: 10, name: "BPC-157", spec: "10mg/vial", category: "Recovery", price: 100, purity: "99.4%", badge: "Popular", stock: 10 },
-  { id: 11, name: "TB-500 (Thymosin Beta-4)", spec: "10mg/vial", category: "Recovery", price: 260, purity: "99.2%", badge: null, stock: 10 },
-  { id: 12, name: "BPC-157 + TB-4 Blend", spec: "5mg+5mg/vial", category: "Recovery", price: 260, purity: "99.1%", badge: "Blend", stock: 8 },
-  { id: 13, name: "KPV", spec: "10mg/vial", category: "Recovery", price: 180, purity: "99.3%", badge: null, stock: 0 },
-  { id: 14, name: "LL-37", spec: "5mg/vial", category: "Recovery", price: 140, purity: "99.2%", badge: null, stock: 10 },
-  { id: 18, name: "Ipamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 65, purity: "99.2%", badge: "Popular", stock: 0 },
-  { id: 19, name: "CJC-1295 + Ipamorelin Blend", spec: "5mg+5mg/vial", category: "Growth Hormone", price: 210, purity: "99.3%", badge: "Blend", stock: 7 },
-  { id: 20, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 240, purity: "99.1%", badge: null, stock: 10 },
-  { id: 23, name: "IGF-1 LR3", spec: "1mg/vial", category: "Growth Hormone", price: 220, purity: "99.0%", badge: null, stock: 0 },
-  { id: 25, name: "Semax", spec: "10mg/vial", category: "Cognitive", price: 50, purity: "99.4%", badge: null, stock: 0 },
-  { id: 26, name: "Selank", spec: "10mg/vial", category: "Cognitive", price: 50, purity: "99.3%", badge: null, stock: 0 },
-  { id: 27, name: "PT-141 (Bremelanotide)", spec: "10mg/vial", category: "Cognitive", price: 120, purity: "99.2%", badge: null, stock: 10 },
-  { id: 28, name: "Epithalon", spec: "10mg/vial", category: "Longevity", price: 210, purity: "99.3%", badge: null, stock: 0 },
-  { id: 29, name: "NAD+", spec: "500mg/vial", category: "Longevity", price: 110, purity: "99.5%", badge: "Popular", stock: 0 },
-  { id: 30, name: "GHK-Cu", spec: "50mg/vial", category: "Longevity", price: 65, purity: "99.4%", badge: null, stock: 5 },
+  { id: 1, name: "Semaglutide", spec: "5mg/vial", category: "Weight Management", price: 89.99, purity: "99.2%", badge: "Popular", stock: 24 },
+  { id: 2, name: "Semaglutide", spec: "10mg/vial", category: "Weight Management", price: 134.99, purity: "99.1%", badge: null, stock: 18 },
+  { id: 3, name: "Tirzepatide", spec: "10mg/vial", category: "Weight Management", price: 124.99, purity: "99.4%", badge: "Popular", stock: 30 },
+  { id: 4, name: "Tirzepatide", spec: "30mg/vial", category: "Weight Management", price: 244.99, purity: "99.3%", badge: null, stock: 12 },
+  { id: 5, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 179.99, purity: "99.2%", badge: "New", stock: 7 },
+  { id: 6, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 289.99, purity: "99.1%", badge: null, stock: 5 },
+  { id: 10, name: "BPC-157", spec: "10mg/vial", category: "Recovery", price: 99.99, purity: "99.4%", badge: "Popular", stock: 10 },
+  { id: 11, name: "TB-500 (Thymosin Beta-4)", spec: "10mg/vial", category: "Recovery", price: 144.99, purity: "99.2%", badge: null, stock: 10 },
+  { id: 12, name: "BPC-157 + TB-4 Blend", spec: "5mg+5mg/vial", category: "Recovery", price: 174.99, purity: "99.1%", badge: "Blend", stock: 8 },
+  { id: 13, name: "KPV", spec: "10mg/vial", category: "Recovery", price: 159.99, purity: "99.3%", badge: null, stock: 0 },
+  { id: 14, name: "LL-37", spec: "5mg/vial", category: "Recovery", price: 169.99, purity: "99.2%", badge: null, stock: 10 },
+  { id: 18, name: "Ipamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 89.99, purity: "99.2%", badge: "Popular", stock: 0 },
+  { id: 19, name: "CJC-1295 + Ipamorelin Blend", spec: "5mg+5mg/vial", category: "Growth Hormone", price: 159.99, purity: "99.3%", badge: "Blend", stock: 7 },
+  { id: 20, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.1%", badge: null, stock: 10 },
+  { id: 23, name: "IGF-1 LR3", spec: "1mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.0%", badge: null, stock: 0 },
+  { id: 25, name: "Semax", spec: "10mg/vial", category: "Cognitive", price: 69.99, purity: "99.4%", badge: null, stock: 0 },
+  { id: 26, name: "Selank", spec: "10mg/vial", category: "Cognitive", price: 69.99, purity: "99.3%", badge: null, stock: 0 },
+  { id: 27, name: "PT-141 (Bremelanotide)", spec: "10mg/vial", category: "Cognitive", price: 139.99, purity: "99.2%", badge: null, stock: 10 },
+  { id: 28, name: "Epithalon", spec: "10mg/vial", category: "Longevity", price: 159.99, purity: "99.3%", badge: null, stock: 0 },
+  { id: 29, name: "NAD+", spec: "500mg/vial", category: "Longevity", price: 134.99, purity: "99.5%", badge: "Popular", stock: 0 },
+  { id: 30, name: "GHK-Cu", spec: "50mg/vial", category: "Longevity", price: 89.99, purity: "99.4%", badge: null, stock: 5 },
 ]
 
 const BADGE_STYLES: Record<string, string> = {
@@ -50,27 +49,27 @@ const CATEGORY_COLORS: Record<string, string> = {
 
 type CartItem = { id: number; name: string; spec: string; price: number; qty: number }
 
+const fmtCAD = (n: number) =>
+  n.toLocaleString("en-CA", { style: "currency", currency: "CAD" })
+
 function StockBadge({ stock }: { stock: number }) {
   if (stock === 0) {
     return (
       <span className="inline-flex items-center gap-1.5 rounded-full border border-destructive/30 bg-destructive/10 px-2.5 py-0.5 font-mono text-xs text-destructive">
-        <span className="size-1.5 rounded-full bg-destructive" />
-        Out of Stock
+        <span className="size-1.5 rounded-full bg-destructive" />Out of Stock
       </span>
     )
   }
   if (stock <= 5) {
     return (
       <span className="inline-flex items-center gap-1.5 rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-0.5 font-mono text-xs text-amber-400">
-        <span className="size-1.5 rounded-full bg-amber-400" />
-        Low Stock ({stock} left)
+        <span className="size-1.5 rounded-full bg-amber-400" />Low Stock ({stock} left)
       </span>
     )
   }
   return (
     <span className="inline-flex items-center gap-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-0.5 font-mono text-xs text-emerald-400">
-      <span className="size-1.5 rounded-full bg-emerald-400" />
-      In Stock
+      <span className="size-1.5 rounded-full bg-emerald-400" />In Stock
     </span>
   )
 }
@@ -114,30 +113,23 @@ function ProductCard({ product, onInquire }: { product: typeof PRODUCTS[0]; onIn
         </div>
         {product.badge && (
           <div className="absolute top-3 right-3">
-            <span className={`rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium ${BADGE_STYLES[product.badge]}`}>
-              {product.badge}
-            </span>
+            <span className={`rounded-full border px-2.5 py-0.5 font-mono text-xs font-medium ${BADGE_STYLES[product.badge]}`}>{product.badge}</span>
           </div>
         )}
       </div>
 
       <div className="flex flex-col gap-3 p-4 flex-1">
-        <div className="flex items-start justify-between gap-2">
-          <div>
-            <span className={`font-mono text-xs ${CATEGORY_COLORS[product.category] ?? "text-muted-foreground"}`}>
-              {product.category}
-            </span>
-            <h3 className="mt-1 font-medium leading-tight">{product.name}</h3>
-          </div>
+        <div>
+          <span className={`font-mono text-xs ${CATEGORY_COLORS[product.category] ?? "text-muted-foreground"}`}>{product.category}</span>
+          <h3 className="mt-1 font-medium leading-tight">{product.name}</h3>
         </div>
 
-        {/* Stock badge */}
         <StockBadge stock={product.stock} />
 
         <div className="flex items-center justify-between">
           <div>
-            <p className="font-mono text-xs text-muted-foreground">Per vial</p>
-            <p className="font-mono text-xl font-semibold">${product.price}</p>
+            <p className="font-mono text-xs text-muted-foreground">Per vial (CAD)</p>
+            <p className="font-mono text-xl font-semibold">{fmtCAD(product.price)}</p>
           </div>
           <div className="flex items-center gap-1">
             <ShieldCheck className="size-3.5 text-primary" />
@@ -145,45 +137,29 @@ function ProductCard({ product, onInquire }: { product: typeof PRODUCTS[0]; onIn
           </div>
         </div>
 
-        {/* Quantity — only if in stock */}
         {!outOfStock && (
           <>
             <div className="flex items-center justify-between rounded-lg border border-border bg-background px-3 py-2">
               <span className="text-sm text-muted-foreground">Qty (vials)</span>
               <div className="flex items-center gap-3">
-                <button onClick={() => setQty((q) => Math.max(1, q - 1))}
-                  className="flex size-7 items-center justify-center rounded-md border border-border bg-secondary text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors">
-                  <Minus className="size-3" />
-                </button>
+                <button onClick={() => setQty((q) => Math.max(1, q - 1))} className="flex size-7 items-center justify-center rounded-md border border-border bg-secondary text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"><Minus className="size-3" /></button>
                 <span className="font-mono text-sm font-medium w-6 text-center">{qty}</span>
-                <button onClick={() => setQty((q) => Math.min(product.stock, q + 1))}
-                  className="flex size-7 items-center justify-center rounded-md border border-border bg-secondary text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors">
-                  <Plus className="size-3" />
-                </button>
+                <button onClick={() => setQty((q) => Math.min(product.stock, q + 1))} className="flex size-7 items-center justify-center rounded-md border border-border bg-secondary text-muted-foreground hover:text-foreground hover:border-primary/50 transition-colors"><Plus className="size-3" /></button>
               </div>
             </div>
             <div className="flex items-center justify-between text-xs text-muted-foreground">
               <span>Subtotal</span>
-              <span className="font-mono font-medium text-foreground">${(product.price * qty).toLocaleString()}</span>
+              <span className="font-mono font-medium text-foreground">{fmtCAD(product.price * qty)}</span>
             </div>
           </>
         )}
 
         <div className="flex gap-2 mt-1">
-          <Button
-            size="sm"
-            className="flex-1"
-            onClick={handleInquire}
-            disabled={outOfStock}
-            variant={added ? "outline" : "default"}
-          >
+          <Button size="sm" className="flex-1" onClick={handleInquire} disabled={outOfStock} variant={added ? "outline" : "default"}>
             {outOfStock ? "Out of Stock" : added ? "✓ Added" : "Add to Inquiry"}
           </Button>
           <Button size="sm" variant="outline" asChild>
-            <a href="/#coa" className="flex items-center gap-1">
-              <ExternalLink className="size-3" />
-              COA
-            </a>
+            <a href="/#coa" className="flex items-center gap-1"><ExternalLink className="size-3" />COA</a>
           </Button>
         </div>
       </div>
@@ -207,17 +183,13 @@ export default function CatalogPage() {
     setShowInquiry(true)
   }
 
-  function removeItem(id: number) {
-    setInquiryItems((prev) => prev.filter((i) => i.id !== id))
-  }
-
+  function removeItem(id: number) { setInquiryItems((prev) => prev.filter((i) => i.id !== id)) }
   function updateQty(id: number, qty: number) {
     if (qty < 1) { removeItem(id); return }
     setInquiryItems((prev) => prev.map((i) => i.id === id ? { ...i, qty } : i))
   }
 
   const total = inquiryItems.reduce((sum, i) => sum + i.price * i.qty, 0)
-
   const filtered = PRODUCTS
     .filter((p) => activeCategory === "All" || p.category === activeCategory)
     .filter((p) => search === "" || p.name.toLowerCase().includes(search.toLowerCase()) || p.category.toLowerCase().includes(search.toLowerCase()))
@@ -228,9 +200,9 @@ export default function CatalogPage() {
     })
 
   const inStockCount = PRODUCTS.filter((p) => p.stock > 0).length
-  const inquiryEmailBody = inquiryItems.map((i) => `- ${i.name} ${i.spec} x${i.qty} vials = $${i.price * i.qty}`).join("\n")
+  const inquiryEmailBody = inquiryItems.map((i) => `- ${i.name} ${i.spec} x${i.qty} vials = ${fmtCAD(i.price * i.qty)}`).join("\n")
   const inquirySubject = encodeURIComponent(`Research Compound Inquiry — ${inquiryItems.length} item${inquiryItems.length > 1 ? "s" : ""}`)
-  const inquiryBody = encodeURIComponent(`Hello,\n\nI would like to inquire about the following research compounds:\n\n${inquiryEmailBody}\n\nEstimated total: $${total.toLocaleString()}\n\nPlease confirm availability and payment details.\n\nThank you.`)
+  const inquiryBody = encodeURIComponent(`Hello,\n\nI would like to inquire about the following research compounds:\n\n${inquiryEmailBody}\n\nEstimated total: ${fmtCAD(total)} CAD\n\nPlease confirm availability and payment details.\n\nThank you.`)
 
   return (
     <>
@@ -240,14 +212,10 @@ export default function CatalogPage() {
           <div className="mx-auto max-w-7xl px-6 py-12 md:py-16">
             <span className="font-mono text-xs uppercase tracking-widest text-primary">Research catalog</span>
             <h1 className="mt-3 text-3xl font-semibold tracking-tight md:text-4xl">Verified research compounds</h1>
-            <p className="mt-3 max-w-xl text-muted-foreground">
-              Every compound independently tested by Janoshik Analytical. Prices per vial. For research use only.
-            </p>
+            <p className="mt-3 max-w-xl text-muted-foreground">Every compound independently tested by Janoshik Analytical. Prices per vial in CAD. For research use only.</p>
             <div className="mt-6 flex flex-wrap items-center gap-4">
-              {["HPLC verified ≥99%", "COA with every order", "Janoshik tested", "Discreet shipping"].map((t) => (
-                <span key={t} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground">
-                  <ShieldCheck className="size-3.5 text-primary" />{t}
-                </span>
+              {["HPLC verified ≥99%", "COA with every order", "Janoshik tested", "Discreet Canadian shipping"].map((t) => (
+                <span key={t} className="inline-flex items-center gap-1.5 text-xs text-muted-foreground"><ShieldCheck className="size-3.5 text-primary" />{t}</span>
               ))}
             </div>
           </div>
@@ -258,33 +226,23 @@ export default function CatalogPage() {
             <div className="flex flex-wrap items-center gap-3">
               <div className="flex items-center gap-2 rounded-md border border-border bg-secondary px-3 py-1.5 flex-1 min-w-48 max-w-64">
                 <Search className="size-3.5 text-muted-foreground shrink-0" />
-                <input type="text" placeholder="Search compounds..." value={search}
-                  onChange={(e) => setSearch(e.target.value)}
-                  className="bg-transparent text-sm outline-none w-full placeholder:text-muted-foreground" />
+                <input type="text" placeholder="Search compounds..." value={search} onChange={(e) => setSearch(e.target.value)} className="bg-transparent text-sm outline-none w-full placeholder:text-muted-foreground" />
               </div>
               <div className="flex flex-wrap gap-2">
                 {CATEGORIES.map((cat) => (
-                  <button key={cat} onClick={() => setActiveCategory(cat)}
-                    className={`rounded-full px-3 py-1 font-mono text-xs transition-all border ${
-                      cat === activeCategory ? "bg-primary text-primary-foreground border-primary" : "bg-secondary text-muted-foreground border-border hover:border-primary/30"
-                    }`}>
-                    {cat}
-                  </button>
+                  <button key={cat} onClick={() => setActiveCategory(cat)} className={`rounded-full px-3 py-1 font-mono text-xs transition-all border ${cat === activeCategory ? "bg-primary text-primary-foreground border-primary" : "bg-secondary text-muted-foreground border-border hover:border-primary/30"}`}>{cat}</button>
                 ))}
               </div>
               <div className="flex items-center gap-2 ml-auto">
                 <SlidersHorizontal className="size-3.5 text-muted-foreground" />
-                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)}
-                  className="bg-secondary border border-border rounded-md px-2 py-1 text-xs text-foreground outline-none">
+                <select value={sortBy} onChange={(e) => setSortBy(e.target.value as typeof sortBy)} className="bg-secondary border border-border rounded-md px-2 py-1 text-xs text-foreground outline-none">
                   <option value="name">A–Z</option>
                   <option value="price-asc">Price: Low to High</option>
                   <option value="price-desc">Price: High to Low</option>
                 </select>
                 {inquiryItems.length > 0 && (
-                  <button onClick={() => setShowInquiry(!showInquiry)}
-                    className="relative flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20 transition-colors">
-                    <ShoppingBag className="size-3.5" />
-                    Inquiry ({inquiryItems.length})
+                  <button onClick={() => setShowInquiry(!showInquiry)} className="relative flex items-center gap-2 rounded-md border border-primary/40 bg-primary/10 px-3 py-1.5 text-xs font-medium text-primary hover:bg-primary/20 transition-colors">
+                    <ShoppingBag className="size-3.5" />Inquiry ({inquiryItems.length})
                   </button>
                 )}
               </div>
@@ -304,7 +262,7 @@ export default function CatalogPage() {
                   <div key={item.id} className="flex items-center justify-between rounded-lg border border-border bg-background px-4 py-3">
                     <div>
                       <p className="text-sm font-medium">{item.name}</p>
-                      <p className="font-mono text-xs text-muted-foreground">{item.spec} · ${item.price}/vial</p>
+                      <p className="font-mono text-xs text-muted-foreground">{item.spec} · {fmtCAD(item.price)}/vial</p>
                     </div>
                     <div className="flex items-center gap-3">
                       <div className="flex items-center gap-2">
@@ -312,7 +270,7 @@ export default function CatalogPage() {
                         <span className="font-mono text-sm w-6 text-center">{item.qty}</span>
                         <button onClick={() => updateQty(item.id, item.qty + 1)} className="flex size-6 items-center justify-center rounded border border-border bg-secondary hover:border-primary/50 transition-colors"><Plus className="size-3" /></button>
                       </div>
-                      <span className="font-mono text-sm font-medium w-20 text-right">${(item.price * item.qty).toLocaleString()}</span>
+                      <span className="font-mono text-sm font-medium w-24 text-right">{fmtCAD(item.price * item.qty)}</span>
                       <button onClick={() => removeItem(item.id)} className="text-muted-foreground hover:text-foreground text-xs">✕</button>
                     </div>
                   </div>
@@ -320,14 +278,12 @@ export default function CatalogPage() {
               </div>
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-xs text-muted-foreground">Estimated total</p>
-                  <p className="font-mono text-xl font-semibold text-primary">${total.toLocaleString()}</p>
+                  <p className="text-xs text-muted-foreground">Estimated total (CAD)</p>
+                  <p className="font-mono text-xl font-semibold text-primary">{fmtCAD(total)}</p>
                 </div>
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" onClick={() => setInquiryItems([])}>Clear all</Button>
-                  <Button size="sm" asChild>
-                    <a href={`mailto:aminoresearchlab@gmail.com?subject=${inquirySubject}&body=${inquiryBody}`}>Send inquiry via email</a>
-                  </Button>
+                  <Button size="sm" asChild><a href={`mailto:aminoresearchlab@gmail.com?subject=${inquirySubject}&body=${inquiryBody}`}>Send inquiry via email</a></Button>
                 </div>
               </div>
             </div>
@@ -335,9 +291,7 @@ export default function CatalogPage() {
         )}
 
         <section className="mx-auto max-w-7xl px-6 py-10 md:py-16">
-          <p className="mb-6 font-mono text-xs text-muted-foreground">
-            Showing {filtered.length} of {PRODUCTS.length} compounds · {inStockCount} in stock
-          </p>
+          <p className="mb-6 font-mono text-xs text-muted-foreground">Showing {filtered.length} of {PRODUCTS.length} compounds · {inStockCount} in stock</p>
           {filtered.length === 0 ? (
             <div className="flex flex-col items-center gap-3 py-20 text-center">
               <FlaskConical className="size-8 text-muted-foreground" />
@@ -346,18 +300,14 @@ export default function CatalogPage() {
             </div>
           ) : (
             <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filtered.map((product) => (
-                <ProductCard key={product.id} product={product} onInquire={handleInquire} />
-              ))}
+              {filtered.map((product) => (<ProductCard key={product.id} product={product} onInquire={handleInquire} />))}
             </div>
           )}
         </section>
 
         <section className="border-t border-border">
           <div className="mx-auto max-w-7xl px-6 py-8">
-            <p className="text-xs leading-relaxed text-muted-foreground max-w-3xl">
-              All compounds listed are sold strictly for in-vitro laboratory and research purposes only. Not for human or veterinary use. Prices shown per vial. Contact us for bulk pricing.
-            </p>
+            <p className="text-xs leading-relaxed text-muted-foreground max-w-3xl">All compounds listed are sold strictly for in-vitro laboratory and research purposes only. Not for human or veterinary use. Prices shown per vial in Canadian dollars (CAD). Contact us for bulk pricing.</p>
           </div>
         </section>
       </main>
