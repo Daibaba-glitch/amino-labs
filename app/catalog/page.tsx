@@ -6,31 +6,19 @@ import { Button } from "@/components/ui/button"
 import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 
-const CATEGORIES = ["All", "Weight Management", "Recovery", "Growth Hormone", "Cognitive", "Longevity"]
+const CATEGORIES = ["All", "Weight Management", "Recovery", "Growth Hormone", "Longevity"]
 
-// Prices in CAD. Edit stock to manage inventory (0 = out of stock).
+// Prices in CAD. Edit "stock" to manage inventory (0 = out of stock).
 const PRODUCTS = [
-  { id: 1, name: "Semaglutide", spec: "5mg/vial", category: "Weight Management", price: 89.99, purity: "99.2%", badge: "Popular", stock: 24 },
-  { id: 2, name: "Semaglutide", spec: "10mg/vial", category: "Weight Management", price: 134.99, purity: "99.1%", badge: null, stock: 18 },
-  { id: 3, name: "Tirzepatide", spec: "10mg/vial", category: "Weight Management", price: 124.99, purity: "99.4%", badge: "Popular", stock: 30 },
-  { id: 4, name: "Tirzepatide", spec: "30mg/vial", category: "Weight Management", price: 244.99, purity: "99.3%", badge: null, stock: 12 },
-  { id: 5, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 179.99, purity: "99.2%", badge: "New", stock: 7 },
-  { id: 6, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 289.99, purity: "99.1%", badge: null, stock: 5 },
-  { id: 10, name: "BPC-157", spec: "10mg/vial", category: "Recovery", price: 99.99, purity: "99.4%", badge: "Popular", stock: 10 },
-  { id: 11, name: "TB-500 (Thymosin Beta-4)", spec: "10mg/vial", category: "Recovery", price: 144.99, purity: "99.2%", badge: null, stock: 10 },
-  { id: 12, name: "BPC-157 + TB-4 Blend", spec: "5mg+5mg/vial", category: "Recovery", price: 174.99, purity: "99.1%", badge: "Blend", stock: 8 },
-  { id: 13, name: "KPV", spec: "10mg/vial", category: "Recovery", price: 159.99, purity: "99.3%", badge: null, stock: 0 },
-  { id: 14, name: "LL-37", spec: "5mg/vial", category: "Recovery", price: 169.99, purity: "99.2%", badge: null, stock: 10 },
-  { id: 18, name: "Ipamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 89.99, purity: "99.2%", badge: "Popular", stock: 0 },
-  { id: 19, name: "CJC-1295 + Ipamorelin Blend", spec: "5mg+5mg/vial", category: "Growth Hormone", price: 159.99, purity: "99.3%", badge: "Blend", stock: 7 },
-  { id: 20, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.1%", badge: null, stock: 10 },
-  { id: 23, name: "IGF-1 LR3", spec: "1mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.0%", badge: null, stock: 0 },
-  { id: 25, name: "Semax", spec: "10mg/vial", category: "Cognitive", price: 69.99, purity: "99.4%", badge: null, stock: 0 },
-  { id: 26, name: "Selank", spec: "10mg/vial", category: "Cognitive", price: 69.99, purity: "99.3%", badge: null, stock: 0 },
-  { id: 27, name: "PT-141 (Bremelanotide)", spec: "10mg/vial", category: "Cognitive", price: 139.99, purity: "99.2%", badge: null, stock: 10 },
-  { id: 28, name: "Epithalon", spec: "10mg/vial", category: "Longevity", price: 159.99, purity: "99.3%", badge: null, stock: 0 },
-  { id: 29, name: "NAD+", spec: "500mg/vial", category: "Longevity", price: 134.99, purity: "99.5%", badge: "Popular", stock: 0 },
-  { id: 30, name: "GHK-Cu", spec: "50mg/vial", category: "Longevity", price: 89.99, purity: "99.4%", badge: null, stock: 5 },
+  { id: 1, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 179.99, purity: "99.2%", badge: "Popular", stock: 10 },
+  { id: 2, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 289.99, purity: "99.1%", badge: null, stock: 10 },
+  { id: 3, name: "MOTS-c", spec: "20mg/vial", category: "Weight Management", price: 119.99, purity: "99.3%", badge: "New", stock: 10 },
+  { id: 4, name: "MOTS-c", spec: "40mg/vial", category: "Weight Management", price: 189.99, purity: "99.2%", badge: null, stock: 10 },
+  { id: 5, name: "BPC-157", spec: "10mg/vial", category: "Recovery", price: 99.99, purity: "99.4%", badge: "Popular", stock: 10 },
+  { id: 6, name: "TB-500 + BPC-157 Blend", spec: "10mg+10mg/vial", category: "Recovery", price: 169.99, purity: "99.1%", badge: "Blend", stock: 10 },
+  { id: 7, name: "Ipamorelin + CJC-1295", spec: "10mg/vial", category: "Growth Hormone", price: 159.99, purity: "99.3%", badge: "Blend", stock: 10 },
+  { id: 8, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.1%", badge: null, stock: 10 },
+  { id: 9, name: "SS-31 (Elamipretide)", spec: "50mg/vial", category: "Longevity", price: 109.99, purity: "99.5%", badge: null, stock: 10 },
 ]
 
 const BADGE_STYLES: Record<string, string> = {
@@ -43,7 +31,6 @@ const CATEGORY_COLORS: Record<string, string> = {
   "Weight Management": "text-purple-400",
   "Recovery": "text-emerald-400",
   "Growth Hormone": "text-blue-400",
-  "Cognitive": "text-amber-400",
   "Longevity": "text-rose-400",
 }
 
