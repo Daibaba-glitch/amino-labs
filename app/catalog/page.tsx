@@ -10,14 +10,14 @@ const CATEGORIES = ["All", "Weight Management", "Recovery", "Growth Hormone", "L
 
 // Prices in CAD. Edit "stock" to manage inventory (0 = out of stock).
 const PRODUCTS = [
-  { id: 1, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 179.99, purity: "99.2%", badge: "Popular", stock: 10 },
-  { id: 2, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 289.99, purity: "99.1%", badge: null, stock: 10 },
+  { id: 1, name: "Retatrutide", spec: "10mg/vial", category: "Weight Management", price: 99.99, purity: "99.2%", badge: "Popular", stock: 10 },
+  { id: 2, name: "Retatrutide", spec: "20mg/vial", category: "Weight Management", price: 169.99, purity: "99.1%", badge: null, stock: 10 },
   { id: 3, name: "MOTS-c", spec: "20mg/vial", category: "Weight Management", price: 119.99, purity: "99.3%", badge: "New", stock: 10 },
   { id: 4, name: "MOTS-c", spec: "40mg/vial", category: "Weight Management", price: 189.99, purity: "99.2%", badge: null, stock: 10 },
   { id: 5, name: "BPC-157", spec: "10mg/vial", category: "Recovery", price: 99.99, purity: "99.4%", badge: "Popular", stock: 10 },
   { id: 6, name: "TB-500 + BPC-157 Blend", spec: "10mg+10mg/vial", category: "Recovery", price: 169.99, purity: "99.1%", badge: "Blend", stock: 10 },
   { id: 7, name: "Ipamorelin + CJC-1295", spec: "10mg/vial", category: "Growth Hormone", price: 159.99, purity: "99.3%", badge: "Blend", stock: 10 },
-  { id: 8, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 219.99, purity: "99.1%", badge: null, stock: 10 },
+  { id: 8, name: "Tesamorelin", spec: "10mg/vial", category: "Growth Hormone", price: 149.99, purity: "99.1%", badge: null, stock: 10 },
   { id: 9, name: "SS-31 (Elamipretide)", spec: "50mg/vial", category: "Longevity", price: 109.99, purity: "99.5%", badge: null, stock: 10 },
 ]
 
